@@ -1,12 +1,13 @@
 import pytest
 import allure
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from src.pages.Application import Application
 
 
 @pytest.fixture(scope="session")
 def browser():
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome(ChromeDriverManager().install())
     browser.implicitly_wait(20)
     yield browser
     browser.quit()
