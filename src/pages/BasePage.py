@@ -1,4 +1,3 @@
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -10,10 +9,8 @@ class BasePage(object):
     def open(self, url):
         self.browser.get(url)
 
-    def easy_find_element(self, locator: tuple):
-        try:
-            element = WebDriverWait(self.browser, 20)\
-                .until(EC.presence_of_element_located(locator))
-        except NoSuchElementException:
-            return None
+    def easy_find_element(self, locator: tuple, wait_time=20):
+        element = WebDriverWait(self.browser, wait_time)\
+            .until(EC.presence_of_element_located(locator))
+
         return element

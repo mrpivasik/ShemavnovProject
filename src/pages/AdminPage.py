@@ -39,7 +39,8 @@ class AdminPage(BasePage):
         log_out_button.click()
 
     def check_success_login_with_new_user(self):
-        assert self.easy_find_element(AdminPageLocators.LOGOUT_LOCATOR).is_displayed()
+        assert self.easy_find_element(AdminPageLocators.LOGOUT_LOCATOR).is_displayed(), \
+            "User can't login with new username and password"
 
     def open_posts_list(self):
         open_posts_list = self.easy_find_element(AdminPageLocators.POSTS_LISTS_LOCATOR)

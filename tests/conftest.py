@@ -1,5 +1,6 @@
 import pytest
 import allure
+import psycopg2
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from src.pages.Application import Application
@@ -16,6 +17,15 @@ def browser():
 @pytest.fixture(scope="session")
 def app(browser):
     return Application(browser)
+
+
+@pytest.fixture(scope="session")
+def db_connection():
+    conn = psycopg2.connect(dbname='postgres', user='postgres',
+                            password='postgres', host='localhost')
+    cursor = conn.cursor()
+    yield cursor
+    cursor.close()
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

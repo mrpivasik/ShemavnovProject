@@ -21,4 +21,5 @@ class MainPage(BasePage):
 
     def check_missing_image(self, img):
         time.sleep(2)
-        assert len(self.browser.find_elements(By.XPATH, f"//img[@src='{img}']")) == 0
+        assert len(self.browser.find_elements(By.XPATH, f"//img[@src='{img}']")) == 0, \
+            "Missing image stayed on the page"

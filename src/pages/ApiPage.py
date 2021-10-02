@@ -28,7 +28,8 @@ class ApiPage:
             ],
             "status": "available"
           })
-        requests.request("POST", url=self.url, data=data, headers=self.headers)
+        resp = requests.request("POST", url=self.url, data=data, headers=self.headers)
+        assert resp.status_code == 200
 
     def check_new_pet_with_api(self, pet_id):
         new_headers = {
