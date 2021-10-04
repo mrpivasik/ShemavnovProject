@@ -28,9 +28,11 @@ class AdminPage(BasePage):
 
     def give_staff_permissions(self):
         staff_checkbox = self.easy_find_element(AdminPageLocators.STAFF_LOCATOR)
-        staff_checkbox.click()
+        if staff_checkbox.get_attribute("checked") is None:
+            staff_checkbox.click()
         super_user = self.easy_find_element(AdminPageLocators.SUPERUSER_LOCATOR)
-        super_user.click()
+        if super_user.get_attribute("checked") is None:
+            super_user.click()
         save_button = self.easy_find_element(AdminPageLocators.SAVE_SUPER_LOCATOR)
         save_button.click()
 
