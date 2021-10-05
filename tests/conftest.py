@@ -26,7 +26,7 @@ def db_connection():
                             password='postgres', host='localhost')
     cursor = conn.cursor()
     yield cursor
-    cursor.close()
+    conn.close()
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
