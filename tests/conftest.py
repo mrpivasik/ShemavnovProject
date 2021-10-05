@@ -9,6 +9,7 @@ from src.pages.Application import Application
 @pytest.fixture(scope="session")
 def browser():
     browser = webdriver.Chrome(ChromeDriverManager().install())
+    browser.maximize_window()
     browser.implicitly_wait(20)
     yield browser
     browser.quit()
